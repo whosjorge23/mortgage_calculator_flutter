@@ -11,6 +11,7 @@ This is a simple mortgage calculator app built with Flutter. It allows users to 
 ## Screenshots
 
 Include screenshots or gifs of your app here to give users a visual preview.
+![img.png](img.png)
 
 ## Getting Started
 
