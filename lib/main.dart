@@ -33,6 +33,10 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
   final _yearsController = TextEditingController();
   final _resultFormat = NumberFormat.currency(symbol: '\$');
 
+  String? _principalError;
+  String? _interestError;
+  String? _yearsError;
+
   double _mortgage = 0.0;
 
   @override
@@ -75,6 +79,11 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
                   }
                   return null;
                 },
+                onChanged: (value) {
+                  setState(() {
+                    _principalError = null;
+                  });
+                },
               ),
               TextFormField(
                 controller: _interestController,
@@ -95,6 +104,11 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
                   }
                   return null;
                 },
+                onChanged: (value) {
+                  setState(() {
+                    _interestError = null;
+                  });
+                },
               ),
               TextFormField(
                 controller: _yearsController,
@@ -114,6 +128,11 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
                     return 'Please enter a value between 1 and 30.';
                   }
                   return null;
+                },
+                onChanged: (value) {
+                  setState(() {
+                    _yearsError = null;
+                  });
                 },
               ),
               SizedBox(height: 16.0),
@@ -141,6 +160,16 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
     final principal = int.parse(_principalController.text);
     final annualInterest = double.parse(_interestController.text);
     final years = int.parse(_yearsController.text);
+
+    if (principal == null || annualInterest == null || years == null) {
+      setState(() {
+        _principalError = 'Invalid principal amount.';
+        _interestError = 'Invalid annual interest rate.';
+        _yearsError = 'Invalid period in years.';
+        _mortgage = 0.0;
+      });
+      return;
+    }
 
     final monthlyInterest = annualInterest / 100 / 12;
     final numberOfPayments = years * 12;
