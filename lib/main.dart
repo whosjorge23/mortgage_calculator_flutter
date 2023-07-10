@@ -68,6 +68,7 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
                 ],
                 decoration: InputDecoration(
                   labelText: 'Principal',
+                  prefixIcon: Icon(Icons.monetization_on_rounded),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -93,6 +94,7 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
                 ],
                 decoration: InputDecoration(
                   labelText: 'Annual Interest Rate',
+                  prefixIcon: Icon(Icons.pie_chart_rounded),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -118,6 +120,7 @@ class _MortgageCalculatorScreenState extends State<MortgageCalculatorScreen> {
                 ],
                 decoration: InputDecoration(
                   labelText: 'Period in Years',
+                  prefixIcon: Icon(Icons.calendar_month_rounded),
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
